@@ -1,0 +1,42 @@
+<div class="card" *ngIf="isShown">
+<p-dataView #dv [value]="this.deviceData" filterBy="deviceName">
+    <ng-template pTemplate="header">
+            
+        <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between">
+            
+        <span class="p-input-icon-right">
+            <i class="pi pi-search"></i>
+            <input type="search" pInputText placeholder="Search by Name" (input)="dv.filter($event.target.value)"style="padding:12px;margin-left:10px!important">
+        </span>
+        </div>
+       
+    </ng-template>
+    <ng-template let-device pTemplate="listItem">
+        <div class="row">
+        <div class="col-8">
+            <div class="device-list-item">
+                <div *ngIf="device.deviceStatus=== 'Available'; else DeviceDetails;" >
+                <img src="assets/images/1.jpg"  style="cursor:pointer" [alt]="device.deviceName"/>
+                </div>
+                <ng-template #DeviceDetails>
+                    <img src="assets/images/2.jpg"  style="cursor:pointer" [alt]="device.deviceName"/>
+                  </ng-template>
+                  
+                <div class="device-list-detail">
+                    <div class="device-name">{{device.deviceName}}</div>
+                    <div class="device-name">Status:{{device.deviceStatus}}</div> 
+                </div>
+            </div>
+           
+        </div>
+        <div class="col-4">
+           <div class="icon"style="margin-top:45px;">
+            <i class="pi pi-exclamation-circle" (click)="openQuickview(device.deviceId)"></i>
+        </div>
+        </div>
+        </div>
+    </ng-template>
+   
+</p-dataView>
+</div>
+<app-device-data-by-id></app-device-data-by-id>

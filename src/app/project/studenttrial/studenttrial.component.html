@@ -1,0 +1,85 @@
+<div class="card">
+  <div class="container">
+    <p-dataView
+      #dv
+    
+      [value]="studentData"
+      [paginator]="true"
+      [rows]="9"
+      filterBy="firstName"
+    >
+      <ng-template pTemplate="header">
+        <div class="row">
+          <div class="col-6">
+            <i class="pi pi-search"></i>
+            <input
+              type="search"
+              pInputText
+              placeholder="Search by Name"
+              (input)="dv.filter($event.target.value)"
+              style="padding: 12px; margin-left: 10px !important"
+            />
+          </div>
+          <div class="col-6">
+            <i class="pi pi-search"></i>
+            <input
+              type="search"
+              pInputText
+              placeholder="Search by Tag"
+              (input)="dv.filter($event.target.value)"
+              style="padding: 12px; margin-left: 10px !important"
+              filterBy="tagValues"
+            />
+          </div>
+        </div>
+      </ng-template>
+      <ng-template let-student  pTemplate="listItem">
+        <div class="row student-list-item">
+          <div class="col">
+            <img src="{{ student.pic }}" [alt]="student.firstName" />
+          </div>
+          <div class="col">
+            <div class="student-list-detail">
+              <div class="student-name">
+                {{ student.firstName }} {{ student.lastName }}
+              </div>
+              <div class="student">Skill:{{ student.skill }}</div>
+              <div class="student">Company:{{ student.company }}</div>
+              <div class="student">Email:{{ student.email }}</div>
+              <div class="student">
+                <table *ngIf="student.visible">
+                  <th>Grade :</th>
+                  <ng-container
+                    *ngFor="let item of student.grades; let i = index"
+                  >
+                    <tr>
+                      <td>Test {{ i + 1 }}: {{ item }}</td>
+                    </tr>
+                  </ng-container>
+                </table>
+              </div>
+              <div class="student">Average:{{ student.average }}%</div>
+              <div class="student">
+                <input #tagTextBox />
+                <button (click)="addTag(tagTextBox.value,student)">
+                  Add Tag
+                </button>
+              </div>
+              <div class="student">
+                <div id="tagDiv" style="margin-top: 20px; display: flex; flex-wrap: wrap;"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="toggle-container">
+            <p-toggleButton
+              offIcon="pi pi-plus"onIcon="pi pi-minus"
+              [(ngModel)]="checked"
+              (click)="showElement(student)"
+            ></p-toggleButton>
+          </div>
+        </div>
+      </ng-template>
+    </p-dataView>
+  </div>
+</div>

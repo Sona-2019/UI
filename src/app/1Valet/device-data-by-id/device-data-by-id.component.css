@@ -1,0 +1,31 @@
+.card {
+    padding: 2rem;
+    box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
+    border-radius: 4px;
+    margin-bottom: 2rem;
+    width:70%;
+    margin-left: 25%;
+    margin-top: 10px;
+}
+
+.device-name {
+    font-size: 1rem !important;
+    font-weight: 700!important;
+    margin-bottom: 5px;
+}
+
+.device {
+    margin: 0 0 1rem 0;
+}
+.device-list-item {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    width: 100%;
+}
+img {
+    width: 150px !important;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    margin-right: 2rem;
+    border-radius: 5em;
+}

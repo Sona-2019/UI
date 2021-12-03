@@ -1,0 +1,43 @@
+<div class="card">
+    <p-dataView #dv [value]="studentData" [paginator]="true" [rows]="9" filterBy="firstName">
+        <ng-template pTemplate="header">
+            
+            <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between">
+                
+            <span class="p-input-icon-left">
+                <i class="pi pi-search"></i>
+                <input type="search" pInputText placeholder="Search by Name" (input)="dv.filter($event.target.value)"style="padding:12px;margin-left:10px!important">
+            </span>
+            </div>
+           
+        </ng-template>
+        <ng-template let-student pTemplate="listItem">
+            <div class="row">
+            <div class="col-6">
+                <div class="student-list-item">
+                    <img src="{{student.pic}}" [alt]="student.firstName"/>
+                    <div class="student-list-detail">
+                        <div class="student-name">{{student.firstName}} {{student.lastName}}</div>
+                        <div class="student">Skill:{{student.skill}}</div>
+                        <div class="student">Company:{{student.company}}</div>
+                        <div class="student">Email:{{student.email}}</div>
+                       
+                        <div class="student">Average:{{student.average}}%</div>
+                    </div>
+                   
+                
+                </div>
+               
+            </div>
+            <div class="col-6">
+            <p-fieldset  [toggleable]="true"[collapsed]="true"><table>
+                <ng-container *ngFor="let item of student.grades;let i=index">
+                    <tr><td>Test {{i}}: {{item}}</td></tr>
+                              </ng-container>
+           </table></p-fieldset></div>
+            </div>
+        </ng-template>
+       
+    </p-dataView>
+   
+</div>
